@@ -5,7 +5,7 @@
 void transformPoint(const tf::TransformListener& listener) {
   //we'll create a point in the base_laser frame that we'd like to transform to the base_link frame
   geometry_msgs::PointStamped laser_point;
-  laser_point.header.frame_id = "base_laser";
+  laser_point.header.frame_id = "camera_link";
   
   //we'll just use the most recent transform available for our simple example
   laser_point.header.stamp = ros::Time();
@@ -18,12 +18,12 @@ void transformPoint(const tf::TransformListener& listener) {
   try {
     geometry_msgs::PointStamped base_point;
     listener.transformPoint("base_link", laser_point, base_point);
-    ROS_INFO("base_laser: (%.2f, %.2f. %.2f) -----> base_link: (%.2f, %.2f, %.2f) at time %.2f",
+    ROS_INFO("camera_link: (%.2f, %.2f. %.2f) -----> base_link: (%.2f, %.2f, %.2f) at time %.2f",
       laser_point.point.x, laser_point.point.y, laser_point.point.z,
       base_point.point.x, base_point.point.y, base_point.point.z, base_point.header.stamp.toSec());
   }
   catch(tf::TransformException& ex){
-    ROS_ERROR("Received an exception trying to transform a point from \"base_laser\" to \"base_link\": %s", ex.what());
+    ROS_ERROR("Received an exception trying to transform a point from \"camera_link\" to \"base_link\": %s", ex.what());
   }
 }
 

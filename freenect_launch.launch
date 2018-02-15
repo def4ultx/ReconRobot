@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<launch>
+    <!-- default parameter -->
+    <arg name="camera" default="camera" />
+
+    <!-- start sensor-->
+    <include file="$(find freenect_launch)/launch/freenect.launch">
+        <arg name="camera" default="$(arg camera)"/>
+    </include>
+
+</launch>
