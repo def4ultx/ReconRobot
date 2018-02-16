@@ -2,19 +2,19 @@
 import rospy
 import roslib
 
-import RPi.GPIO as GPIO
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BOARD)
+# import RPi.GPIO as GPIO
+# GPIO.setwarnings(False)
+# GPIO.setmode(GPIO.BOARD)
 
-GPIO.setup(35, GPIO.OUT)
-GPIO.setup(36, GPIO.OUT)
-GPIO.setup(37, GPIO.OUT)
-GPIO.setup(38, GPIO.OUT)
+# GPIO.setup(35, GPIO.OUT)
+# GPIO.setup(36, GPIO.OUT)
+# GPIO.setup(37, GPIO.OUT)
+# GPIO.setup(38, GPIO.OUT)
 
-p1 = GPIO.PWM(35, 50)
-p2 = GPIO.PWM(36, 50)
-p3 = GPIO.PWM(37, 50)
-p4 = GPIO.PWM(38, 50)
+# p1 = GPIO.PWM(35, 50)
+# p2 = GPIO.PWM(36, 50)
+# p3 = GPIO.PWM(37, 50)
+# p4 = GPIO.PWM(38, 50)
 
 # Messages
 from std_msgs.msg import Float32

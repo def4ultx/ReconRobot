@@ -5,7 +5,7 @@
     <param name="rate" value="1" />
     <param name="timeout_idle" value="50" />
     <param name="robot_wheel_separation_distance" value="0.14" />
-    <param name="robot_wheel_radius" value="0.03" />
+    <param name="robot_wheel_radius" value="0.04" />
   </node>
 
 </launch>
