@@ -133,7 +133,8 @@ class ControlsToMotors:
   # motor2 for right wheel.
   def motorcmd_2_robot(self, wheel='left', motor_command=0):
     if self.gopigo_on:
-      motor_command_raw = int(abs(motor_command))
+      motor_command_raw = int(abs(motor_command)) / 255 * 100
+      print("motor_command_raw: ", motor_command_raw)
       # import gopigo
       if wheel == 'left':
         #if motor_command >= 0: gopigo.motor1(1,motor_command_raw)
