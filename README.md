@@ -1,6 +1,13 @@
 # Installation
 
 Install ROS Kinetic and catkin workspace
+ROS Kinetic
+
+On Raspberry Pi
+sudo apt-get install ros-kinetic-ros-base ros-kinetic-rospy ros-kinetic-roscpp
+
+New Catkin tool
+sudo apt-get install python-catkin-tools
 
 Place 51-kinect.rules file in /etc/udev/rules.d and you'll no longer need to run your apps as root.
 
@@ -21,3 +28,11 @@ rqt -> show tf graph
 # Better hardware
 
 Hokuyo laser scan, encoder motors, Nvidia Jetson, ZED camera
+
+# No access to /dev/mem when run with ros
+
+Create new user group name gpio
+
+Add current user to gpio group
+
+Add 99-com.rules to /etc/udev/rules.d/

@@ -37,9 +37,10 @@ class ControlsToMotors:
     self.R = rospy.get_param('~robot_wheel_radius', 0.03)
     self.gopigo_on = rospy.get_param('~gopigo_on',False)
     if self.gopigo_on:
-      import gopigo
-      import atexit
-      atexit.register(gopigo.stop)
+      # import gopigojx
+      # import atexit
+      # atexit.register(gopigo.stop)
+      GPIO.cleanup()
     # (Optional) Publish the computed angular velocity targets
     self.lwheel_angular_vel_target_pub = rospy.Publisher('lwheel_angular_vel_target', Float32, queue_size=10)
     self.rwheel_angular_vel_target_pub = rospy.Publisher('rwheel_angular_vel_target', Float32, queue_size=10)
@@ -53,7 +54,7 @@ class ControlsToMotors:
     self.rwheel_angular_vel_motor_pub = rospy.Publisher('rwheel_angular_vel_motor', Float32, queue_size=10)
 
     # Read in encoders for PID control
-    self.lwheel_angular_vel_enc_sub = rospy.Subscriber('lwheel_angular_vel_enc', Float32, self.lwheel_angular_vel_enc_callback)    
+    self.lwheel_atongular_vel_enc_sub = rospy.Subscriber('lwheel_angular_vel_enc', Float32, self.lwheel_angular_vel_enc_callback)    
     self.rwheel_angular_vel_enc_sub = rospy.Subscriber('rwheel_angular_vel_enc', Float32, self.rwheel_angular_vel_enc_callback)    
 
     # Read in tangential velocity targets
@@ -62,8 +63,8 @@ class ControlsToMotors:
 
 
     # Tangential velocity target
-    self.lwheel_tangent_vel_target = 0;
-    self.rwheel_tangent_vel_target = 0;
+    self.lwheel_tangent_vel_target = 0
+    self.rwheel_tangent_vel_target = 0
 
     # Angular velocity target
     self.lwheel_angular_vel_target = 0
@@ -102,7 +103,7 @@ class ControlsToMotors:
     # v - tangential velocity (m/s)
     # w - angular velocity (rad/s)
     # r - radius of wheel (m)
-    angular_vel = tangent_vel / self.R;
+    angular_vel = tangent_vel / self.R
     return angular_vel
 
 
@@ -110,7 +111,7 @@ class ControlsToMotors:
   # Note: motor commands are ints between 0 - 255
   # We also assume motor commands are issues between motor_min_angular_vel and motor_max_angular_vel
   def angularvel_2_motorcmd(self, angular_vel_target):
-    if angular_vel_target == 0: return 0;
+    if angular_vel_target == 0: return 0
     slope = (self.motor_cmd_max - self.motor_cmd_min) / (self.motor_max_angular_vel - self.motor_min_angular_vel)
     intercept = self.motor_cmd_max - slope * self.motor_max_angular_vel
 
@@ -133,7 +134,7 @@ class ControlsToMotors:
   def motorcmd_2_robot(self, wheel='left', motor_command=0):
     if self.gopigo_on:
       motor_command_raw = int(abs(motor_command))
-      import gopigo
+      # import gopigo
       if wheel == 'left':
         #if motor_command >= 0: gopigo.motor1(1,motor_command_raw)
         #elif motor_command < 0: gopigo.motor1(0,motor_command_raw)
@@ -192,7 +193,7 @@ class ControlsToMotors:
       self.rwheel_update()
       self.lwheel_update()
       rate.sleep()
-    rospy.spin();
+    rospy.spin()
 
   def shutdown(self):
     rospy.loginfo("Stop gopigo_controller")
@@ -206,9 +207,9 @@ class ControlsToMotors:
     rospy.sleep(1)        
 
 def main():
-  controls_to_motors = ControlsToMotors();
+  controls_to_motors = ControlsToMotors()
   controls_to_motors.spin()
 
 if __name__ == '__main__':
-  main(); 
+  main()
 
