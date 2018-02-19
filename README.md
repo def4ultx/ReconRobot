@@ -37,10 +37,13 @@ Add current user to gpio group
 
 Add 99-com.rules to /etc/udev/rules.d/
 
-# We introduce two ROS nodes that host several convenient launch files: nav_behaviors and gopigo_description. To launch our open loop control of an actual robot, on the host machine:
+# To launch open loop control of an actual robot
+On host machine
 
 roslaunch nav_behaviors nav_behaviors.launch
 
 On the Raspberry Pi:
+
+roscore (cmd_vel wont goes to raspberry pi if you launch roscore on host machine)
 
 roslaunch gopigo_description gopigo_interface.launch

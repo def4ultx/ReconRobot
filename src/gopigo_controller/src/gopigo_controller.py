@@ -6,7 +6,7 @@ import roslib
 from std_msgs.msg import Float32
 
 import RPi.GPIO as GPIO
-pin = []
+pin = [None] * 5
 
 # Issue commands to the GoPiGo motors to achieve the target velocity
 # Use a PID that compares the error based on encoder readings
@@ -30,7 +30,9 @@ class ControlsToMotors:
       # import atexit
       # atexit.register(gopigo.stop)
       GPIO.setmode(GPIO.BOARD)
+      GPIO.setwarnings(False)
       for i in range(35, 39):
+        GPIO.setup(i, GPIO.OUT)
         pin[i-35] = GPIO.PWM(i, 50)
         pin[i-35].start(0)
       # GPIO.cleanup()
