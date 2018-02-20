@@ -11,9 +11,9 @@ void transformPoint(const tf::TransformListener& listener) {
   laser_point.header.stamp = ros::Time();
     
   //just an arbitrary point in space
-  laser_point.point.x = 1.0;
-  laser_point.point.y = 0.2;
-  laser_point.point.z = 0.0;
+  laser_point.point.x = 0.0;
+  laser_point.point.y = 0.0;
+  laser_point.point.z = 0.14;
     
   try {
     geometry_msgs::PointStamped base_point;
