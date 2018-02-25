@@ -15,6 +15,10 @@ int main(int argc, char** argv) {
         tf::StampedTransform(
             tf::Transform(tf::Quaternion(0, 0, 0, 1), tf::Vector3(0, 0, 0)),
             ros::Time::now(), "base_laser", "camera_link"));
+        broadcaster.sendTransform( 
+        tf::StampedTransform(
+            tf::Transform(tf::Quaternion(0, 0, 0, 1), tf::Vector3(0, 0, 0)),
+            ros::Time::now(), "base_footprint", "base_laser"));
         r.sleep();
     }
 }

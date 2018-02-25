@@ -47,3 +47,19 @@ On the Raspberry Pi:
 roscore (cmd_vel wont goes to raspberry pi if you launch roscore on host machine)
 
 roslaunch gopigo_description gopigo_interface.launch
+
+# Save map
+
+rosrun mapserver -f mymap
+
+adjust laser scan size to 0.05
+
+nmap -sP 10.42.0.*
+
+robot_pose_ekf -> better calculation base_link overtime (covariance m)
+
+rostopic pub /syscommand std_msgs/String "data: 'reset'"
+
+# TODO
+Add IMU Sensor, Encoder motor
+add robot_pose_ekf to help stablize odom
