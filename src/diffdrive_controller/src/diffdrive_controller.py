@@ -20,8 +20,8 @@ class CmdVelToDiffDriveMotors:
     self.timeout_idle = rospy.get_param('~timeout_idle', 2)
     self.time_prev_update = rospy.Time.now()
 
-    self.target_v = 0;
-    self.target_w = 0;
+    self.target_v = 0
+    self.target_w = 0
 
   # When given no commands for some time, do not move
   def spin(self):
@@ -34,9 +34,9 @@ class CmdVelToDiffDriveMotors:
     while not rospy.is_shutdown():
       time_diff_update = (time_curr_update - self.time_prev_update).to_sec()
       if time_diff_update < self.timeout_idle: # Only move if command given recently
-        self.update();
+        self.update()
       rate.sleep()
-    rospy.spin();
+    rospy.spin()
 
   def shutdown(self):
     rospy.loginfo("Stop diffdrive_controller")
@@ -60,14 +60,14 @@ class CmdVelToDiffDriveMotors:
     self.lwheel_tangent_vel_target_pub.publish(vl)
 
   def twistCallback(self,msg):
-    self.target_v = msg.linear.x;
-    self.target_w = msg.angular.z;
+    self.target_v = msg.linear.x
+    self.target_w = msg.angular.z
     self.time_prev_update = rospy.Time.now()
 
 
 def main():
-  cmdvel_to_motors = CmdVelToDiffDriveMotors();
+  cmdvel_to_motors = CmdVelToDiffDriveMotors()
   cmdvel_to_motors.spin()
 
 if __name__ == '__main__':
-  main(); 
+  main()

@@ -127,7 +127,7 @@ class ControlsToMotors:
   # motor1 for left wheel. motor1(0, ?) tells wheel to move backwards. motor1(1, ?) tells wheel to move forwards
   # motor2 for right wheel.
   def motorcmd_2_robot(self, wheel='left', motor_command=0):
-    print(motor_command)
+    # print(motor_command)
     if self.gopigo_on:
       motor_command_raw = int(abs(motor_command))
       # import gopigo

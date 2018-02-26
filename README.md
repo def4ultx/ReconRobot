@@ -1,4 +1,8 @@
-# Installation
+# Recon Robot
+3d reconstruction robot using ROS and RTAB-MAP
+
+
+## Installation
 
 Install ROS Kinetic and catkin workspace
 ROS Kinetic
@@ -11,7 +15,7 @@ sudo apt-get install python-catkin-tools
 
 Place 51-kinect.rules file in /etc/udev/rules.d and you'll no longer need to run your apps as root.
 
-# Launch
+## Launch
 
 depth_to_laser.launch -> convert depth image to 2d laser scan.
 
@@ -25,11 +29,11 @@ rosrun rviz rviz -d rviz.rviz run rviz with config file.
 
 rqt -> show tf graph
 
-# Better hardware
+## Better hardware
 
 Hokuyo laser scan, encoder motors, Nvidia Jetson, ZED camera
 
-# No access to /dev/mem when run with ros
+## No access to /dev/mem when run with ros
 
 Create new user group name gpio
 
@@ -37,7 +41,7 @@ Add current user to gpio group
 
 Add 99-com.rules to /etc/udev/rules.d/
 
-# To launch open loop control of an actual robot
+## To launch open loop control of an actual robot
 On host machine
 
 roslaunch nav_behaviors nav_behaviors.launch
@@ -48,7 +52,7 @@ roscore (cmd_vel wont goes to raspberry pi if you launch roscore on host machine
 
 roslaunch gopigo_description gopigo_interface.launch
 
-# Save map
+## Save map
 
 rosrun mapserver -f mymap
 
@@ -60,6 +64,7 @@ robot_pose_ekf -> better calculation base_link overtime (covariance m)
 
 rostopic pub /syscommand std_msgs/String "data: 'reset'"
 
-# TODO
+## TODO
 Add IMU Sensor, Encoder motor
 add robot_pose_ekf to help stablize odom
+nvidia jetson tx2
