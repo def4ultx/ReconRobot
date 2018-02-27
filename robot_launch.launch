@@ -40,7 +40,7 @@
         <param name="motor_max_angular_vel" value="4.0" />
         <param name="motor_min_angular_vel" value="1.22" />
         <param name="motor_cmd_max" value="100" />
-        <param name="motor_cmd_min" value="2" />
+        <param name="motor_cmd_min" value="8" />
         <param name="robot_wheel_radius" value="0.04" />
         <param name="gopigo_on" value="True" />
     </node>
