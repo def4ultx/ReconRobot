@@ -11,10 +11,10 @@
     </node>
 
     <!-- TF -->
-    <node pkg="robot_setup_tf" type="tf_broadcaster" name="robot_tf_publisher" />    
+    <!-- <node pkg="robot_setup_tf" type="tf_broadcaster" name="robot_tf_publisher" /> -->
 
     <!-- Odometry -->
-    <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
+    <!-- <node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">
         <param name="output_frame" value="odom"/>
         <param name="freq" value="30.0"/>
         <param name="sensor_timeout" value="1.0"/>
@@ -23,6 +23,6 @@
         <param name="vo_used" value="true"/>
         <param name="debug" value="false"/>
         <param name="self_diagnose" value="false"/>
-    </node>
+    </node> -->
 
 </launch>
