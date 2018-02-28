@@ -7,9 +7,9 @@
     <arg name="depth" default="depth"/>
 
     <!-- start sensor-->
-    <include file="$(find freenect_launch)/launch/freenect.launch">
+    <!-- <include file="$(find freenect_launch)/launch/freenect.launch">
         <arg name="camera" default="$(arg camera)"/>
-    </include>
+    </include> -->
 
     <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
 
