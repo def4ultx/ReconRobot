@@ -29,10 +29,6 @@ rosrun rviz rviz -d rviz.rviz run rviz with config file.
 
 rqt -> show tf graph
 
-## Better hardware
-
-Hokuyo laser scan, encoder motors, Nvidia Jetson, ZED camera
-
 ## No access to /dev/mem when run with ros
 
 Create new user group name gpio
@@ -52,6 +48,20 @@ roscore (cmd_vel wont goes to raspberry pi if you launch roscore on host machine
 
 roslaunch gopigo_description gopigo_interface.launch
 
+## 3D Mapping on raspberry pi
+
+on raspberry pi
+
+roslaunch freenect_launch freenect.launch depth_registration:=true data_skip:=2
+
+roslaunch rtabmap_ros rgbd_mapping.launch rtabmap_args:="--delete_db_on_start --Vis/MaxFeatures 500 --Mem/ImagePreDecimation 2 --Mem/ImagePostDecimation 2 --Kp/DetectorStrategy 6 --OdomF2M/MaxSize 1000 --Odom/ImageDecimation 2" rtabmapviz:=false
+
+on client
+
+ROS_NAMESPACE=rtabmap rosrun rtabmap_ros rtabmapviz _subscribe_odom_info:=false _frame_id:=camera_link
+
+
+
 ## Save map
 
 rosrun mapserver -f mymap
@@ -65,6 +75,6 @@ robot_pose_ekf -> better calculation base_link overtime (covariance m)
 rostopic pub /syscommand std_msgs/String "data: 'reset'"
 
 ## TODO
-Add IMU Sensor, Encoder motor
+Add IMU Sensor, Encoder motor, Nvidia Jetson
 add robot_pose_ekf to help stablize odom
 nvidia jetson tx2
